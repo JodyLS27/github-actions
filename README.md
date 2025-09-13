@@ -1,6 +1,6 @@
 # Info
 This repo is used to house any GitHub Actions that can be used across multiple
-repositories in the `Hyper Active Forge` Organization.
+repositories within a personal repo.
 
 > _When using these in a GitHub action, you should not write a GH-Action from scratch unless its specific to the project 
 you need, otherwise it should be placed here in this project._
