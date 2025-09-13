@@ -7,7 +7,7 @@ you need, otherwise it should be placed here in this project._
 ---
 # Folder Structure
 ```
-HyperActiveForge/github-actions/
+/github-actions/
   └── .github/workflows/
       ├── test.yaml
       ├── lint.yaml
