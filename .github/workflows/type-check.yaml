@@ -2,6 +2,12 @@ name: Run Type Check
 
 on:
   workflow_call:
+    inputs:
+      dir-path:
+        description: "Optional directory to for mypy to check. Default is {root}/src/"
+        required: false
+        type: string
+        default: "src/"
 
 jobs:
   type-checking:
@@ -23,4 +29,4 @@ jobs:
         run: uv sync
 
       - name: Run MyPy
-        run: uv run mypy src/
+        run: uv run mypy ${{ inputs.dir-path }}
