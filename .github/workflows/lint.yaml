@@ -2,6 +2,12 @@ name: Run Lint Check
 
 on:
   workflow_call:
+    inputs:
+      dir-path:
+        description: "Optional directory to point Ruff at. Default is project root: (.)"
+        required: false
+        type: string
+        default: ""
 
 jobs:
   lint-check:
@@ -23,4 +29,4 @@ jobs:
         run: uv sync
 
       - name: Run Ruff --check
-        run: uv run ruff check
+        run: uv run ruff check ${{ inputs.dir-path }}
