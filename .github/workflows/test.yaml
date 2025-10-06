@@ -2,6 +2,12 @@ name: Run Tests
 
 on:
   workflow_call:
+    inputs:
+      dir-path:
+        description: "Optional directory to point Ruff at. Default is project root: (.)"
+        required: false
+        type: string
+        default: ""
 
 jobs:
   pytest-checker:
@@ -23,4 +29,4 @@ jobs:
         run: uv sync
 
       - name: Run tests
-        run: uv run pytest
+        run: uv run pytest ${{ inputs.dir-path }}
