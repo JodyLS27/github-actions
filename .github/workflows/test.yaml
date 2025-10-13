@@ -22,6 +22,15 @@ on:
         default: ""
 
 jobs:
+  validation-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: validate pre run command
+        if: ${{ inputs.enable-pre-run-command == true && inputs.pre-run-command == ""}}
+        run: |
+          echo "❌ ERROR: You must provide the 'pre-run-command' when 'enable-pre-run-command' is true."
+          exit 1
+
   pytest-checker:
     runs-on: ubuntu-latest
 
@@ -39,6 +48,12 @@ jobs:
 
       - name: Install dependencies
         run: uv sync
+
+      - name: Run pre-run command
+        if: ${{ inputs.enable-pre-run-commands }}
+        run: |
+          echo "⚙️ Running pre-run command:
+          $ {{inputs.pre-run-command}}
 
       - name: Run tests
         run: uv run pytest ${{ inputs.dir-path }}
