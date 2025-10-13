@@ -33,12 +33,18 @@ As you can see, you are able to call each GH-Action as required, so if you need 
 new `jobs` that looks at the _`/lint.yaml`_ file 
 
 ### Optional Flags
-**dir-path** : _Allows you to specify a directory path to run `Ruff`, `mypy`, and `pytest` based on what you have 
+- **`dir-path`**
+
+    Enabled on: `lint.yaml` | `test.yaml` | `type-check.yaml`
+
+    > _Allows you to specify a directory path to run `Ruff`, `mypy`, and `pytest` based on what you have 
 implemented in your `ci.yaml` file._
-```yaml
-  typer-checker:
-    uses: JodyLS27/github-actions/.github/workflows/type-check.yaml@feature/jody/add-directory-optional-support
-    with:
-      dir-path: "app/" # Adding a specific path to check for `mypy`
-```
+
+    ```yaml
+      typer-checker:
+        uses: JodyLS27/github-actions/.github/workflows/type-check.yaml@main
+        with:
+          dir-path: "app/" # Adding a specific path to check for `mypy`
+    ```
+
 ---
