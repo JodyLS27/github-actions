@@ -9,28 +9,7 @@ on:
         type: string
         default: ""
 
-      enable-pre-run-command:
-        description: "Used to run a command before pytest runs, allowing you to fire off events that are required for your test to succeed."
-        required: true
-        type: boolean
-        default: false
-
-      pre-run-command:
-        description: "The command to pass through to be run in the terminal."
-        required: false
-        type: string
-        default: ""
-
 jobs:
-  validation-check:
-    runs-on: ubuntu-latest
-    steps:
-      - name: validate pre run command
-        if: ${{ inputs.enable-pre-run-command == true && inputs.pre-run-command == ""}}
-        run: |
-          echo "❌ ERROR: You must provide the 'pre-run-command' when 'enable-pre-run-command' is true."
-          exit 1
-
   pytest-checker:
     runs-on: ubuntu-latest
 
@@ -48,11 +27,6 @@ jobs:
 
       - name: Install dependencies
         run: uv sync
-
-      - name: Run pre-run command
-        if: ${{ inputs.enable-pre-run-commands }}
-        run: bash -c "echo ⚙️ Running pre-run command:"
-          bash -c "${{ inputs.pre-run-command }}"
 
       - name: Run tests
         run: uv run pytest ${{ inputs.dir-path }}
