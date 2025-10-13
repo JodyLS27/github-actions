@@ -9,6 +9,18 @@ on:
         type: string
         default: ""
 
+      enable-pre-run-command:
+        description: "Used to run a command before pytest runs, allowing you to fire off events that are required for your test to succeed."
+        required: true
+        type: boolean
+        default: false
+
+      pre-run-command:
+        description: "The command to pass through to be run in the terminal."
+        required: false
+        type: string
+        default: ""
+
 jobs:
   pytest-checker:
     runs-on: ubuntu-latest
