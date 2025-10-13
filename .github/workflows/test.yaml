@@ -51,9 +51,8 @@ jobs:
 
       - name: Run pre-run command
         if: ${{ inputs.enable-pre-run-commands }}
-        run: |
-          echo "⚙️ Running pre-run command:
-          $ {{inputs.pre-run-command}}
+        run: bash -c "echo ⚙️ Running pre-run command:"
+          bash -c "${{ inputs.pre-run-command }}"
 
       - name: Run tests
         run: uv run pytest ${{ inputs.dir-path }}
